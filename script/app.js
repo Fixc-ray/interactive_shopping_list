@@ -28,6 +28,7 @@ const ol = select("ol");
 listen(document, "DOMContentLoaded", displayItems);
 
 function displayItems() {
+    ol.innerHTML= ""
   shoppinglist.forEach(createAlistItem);
 }
 
@@ -35,4 +36,14 @@ function createAlistItem(Item) {
   const li = createAnElement("li");
   addText(li, Item);
   appendChild(li, ol);
+}
+
+const form = select('form')
+listen(form, 'submit', addItem)
+
+function addItem(event) {
+    event.preventDefault()
+    shoppinglist.push(event.target[0].value)
+    displayItems()
+    
 }
